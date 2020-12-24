@@ -34,7 +34,7 @@ stages:
       inputs:
         controllerType: 'external'
         neuvectorController: 'nv-gke'
-        #containerRegistry: 'dockerhub'
+        containerRegistry: 'dockerhub'
         repository: 'achdevops/holapy-azure'
         tag: '$(Build.BuildId)'
         #failOnHighSeverityThreshold: true
