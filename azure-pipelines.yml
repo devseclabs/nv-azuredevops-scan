@@ -4,9 +4,6 @@
 trigger:
 - main
 
-resources:
-- repo: self
-
 variables:
   tag: '$(Build.BuildId)'
 
@@ -40,7 +37,10 @@ stages:
         containerRegistry: 'dockerhub'
         repository: 'achdevops/holapy-azure'
         tag: '$(tag)'
+
 resources:
+- repo: self
+
   containers:
   - container: neuvector
     container_name: neuvector
