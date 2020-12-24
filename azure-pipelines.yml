@@ -33,10 +33,15 @@ stages:
     - task: NeuVectorScan@1
       inputs:
         controllerType: 'local'
+        controllerPort: 10443
         controllerLicense: '$(neuvectorLicense.secureFilePath)'
         containerRegistry: 'dockerhub'
         repository: 'achdevops/holapy-azure'
         tag: '$(tag)'
+        failOnHighSeverityThreshold: true
+        highSeverityThreshold: '1'
+        failOnMediumSeverityThreshold: true
+        mediumSeverityThreshold: '3'
 resources:
   containers:
   - container: neuvector
