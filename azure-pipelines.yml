@@ -7,41 +7,6 @@ trigger:
 variables:
   tag: '$(Build.BuildId)'
 
-stages:
-- stage: Build
-  displayName: Build image
-  jobs:  
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-    - task: Docker@2
-      displayName: Build and Push an image
-      inputs:
-        containerRegistry: 'dockerhub'
-        repository: 'achdevops/holapy-azure'
-        command: 'buildAndPush'
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: |
-          $(tag)
-    - task: DownloadSecureFile@1
-      name: neuvectorLicense
-      displayName: Get NeuVector license
-      inputs:
-        secureFile: 'neuvector-license.txt'
-    - task: NeuVectorScan@1
-      inputs:
-        controllerType: 'local'
-        controllerPort: 10443
-        controllerLicense: '$(neuvectorLicense.secureFilePath)'
-        containerRegistry: 'dockerhub'
-        repository: 'achdevops/holapy-azure'
-        tag: '$(tag)'
-        failOnHighSeverityThreshold: true
-        highSeverityThreshold: '1'
-        failOnMediumSeverityThreshold: true
-        mediumSeverityThreshold: '3'
 resources:
   containers:
   - container: neuvector
@@ -73,3 +38,39 @@ resources:
       - 18402:18402
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: Docker@2
+      displayName: Build and Push an image
+      inputs:
+        containerRegistry: 'dockerhub'
+        repository: 'achdevops/holapy-azure'
+        command: 'buildAndPush'
+        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        tags: |
+          $(tag)
+    - task: DownloadSecureFile@1
+      name: neuvectorLicense
+      displayName: Get NeuVector license
+      inputs:
+        secureFile: 'neuvector-license.txt'
+    - task: NeuVectorScan@1
+      inputs:
+        controllerType: 'local'
+        controllerPort: 10443'
+        controllerLicense: '$(neuvectorLicense.secureFilePath)'
+        containerRegistry: 'dockerhub'
+        repository: 'achdevops/holapy-azure'
+        tag: '$(tag)'
+        failOnHighSeverityThreshold: true
+        highSeverityThreshold: '1'
+        failOnMediumSeverityThreshold: true
+        mediumSeverityThreshold: '3'
