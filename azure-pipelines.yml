@@ -31,7 +31,7 @@ stages:
     - task: NeuVectorScan@1
       inputs:
         controllerType: 'local'
-        controllerLicense: 'neuvector-license.txt'
+        controllerLicense: '$(Agent.TempDirectory)/neuvector-license.txt'
         containerRegistry: 'dockerhub'
         repository: 'achdevops/holapy-azure'
         tag: '$(tag)'
