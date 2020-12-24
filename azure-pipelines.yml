@@ -37,12 +37,12 @@ stages:
         containerRegistry: 'dockerhub'
         repository: 'achdevops/holapy-azure'
         tag: '$(tag)'
-
 resources:
   containers:
   - container: neuvector
     container_name: neuvector
     image: neuvector/controller:latest
+    endpoint: 'dockerhub'
     environment:
       - CLUSTER_JOIN_ADDR=neuvector
       - NV_PLATFORM_INFO=platform=Docker
@@ -58,9 +58,10 @@ resources:
       - /var/run/docker.sock:/var/run/docker.sock
       - /sys/fs/cgroup:/host/cgroup
       - /proc:/host/proc
-  - container: neuvector
+  - container: scanner
     image: neuvector/scanner
     container_name: scanner
+    endpoint: 'dockerhub'
     environment:
       - CLUSTER_JOIN_ADDR=neuvector
     ports:
