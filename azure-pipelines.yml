@@ -28,6 +28,13 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
+- task: NeuVectorScan@1
+  inputs:
+    controllerType: 'local'
+    controllerLicense: 'zAaFKxAYp53ktpcxvpjb2SF106kORSyll/M2nUBTyj521amnu2SxCJCBWKqWl5VmomaJkHAnPPH3z9sInycwAMh4Mz1aD3N4SlFC9y/kY5ccAykGoeFzH+7x2J2wHm8A2lnMBTMGzLPlSFMU9dBEbSsBQ3LgxLttnguX4tiVHTgMy+Dv+pDDmcoNbvA/3OcKWWa9uBFsukzNHybCtZwcsGJHCL/84kxK/rz9DgmLptO+2pSZmK/ometOI/x5tD7GRMW+RcxDZhL84JaqtsAOo7qudhpO79BlOyPO3I3GtSw1NRbRb/tZ3uOqYQsmdOtXr4MIOFaFqbvb4NVnNrjIRsc+pMSX1f/x1V78yhsnt0AMC/qIpKMasOcvD6K0hjzoMqjG0GKX+7m74B3P+6icKlX70jamWL6IuhZOf+lsimrEhcTmEQhi7ptcvh77qw9ds+rKJT+swLA/iKk0VyPEEQW++WjX2JibgwvMsTAmPbXA+tokUtcZDx5sV4cG1Je5IUVf707UnRkob6GqhoswLl2bLiyN22pNb+zx/HgXdmOyQpiw2tpa2TZ5u2UDTGZangrGAXmN7PGJUCvOcjDuIN2Bgi6qh4Dx8c4hueVNB+q3xhu3W0N4AErbuPIxiGx0FA/jSgAap+0dpbxIFGCIBTjNNQsVuVDfiKjntUMvQyCszP+BXWWQYr/Kxjmh8BNFgKZWSii/4iqjnnmS7phrtdpeaG2GFDL8ZsOsJyph/mrCYDsErSaBc6lO8qMlbmS75p3f9FsRvfvuynsVBNg9lZQuWZa6cO8J+wXwzEiJvDrS7uVsK26fR2py12SioeCSe2hOuw=='
+    containerRegistry: 'dockerhub'
+    repository: 'achdevops/holapy-azure'
+    tag: '$(tag)'
     - task: NeuVectorScan@1
       inputs:
         controllerType: 'local'
