@@ -32,8 +32,8 @@ stages:
         secureFile: 'neuvector-license.txt'
     - task: NeuVectorScan@1
       inputs:
-        controllerType: 'local'
-        controllerLicense: '$(neuvectorLicense.secureFilePath)'
+        controllerType: 'external'
+        neuvectorController: 'nv-gke'
         containerRegistry: 'dockerhub'
         repository: 'achdevops/holapy-azure'
         tag: '$(tag)'
