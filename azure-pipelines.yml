@@ -62,7 +62,7 @@ stages:
     - task: NeuVectorScan@1
       inputs:
         controllerType: 'local'
-        controllerPort: 10443'
+        controllerPort: 10443
         controllerLicense: '$(neuvectorLicense.secureFilePath)'
         containerRegistry: 'dockerhub'
         repository: 'achdevops/holapy-azure'
