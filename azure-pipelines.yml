@@ -8,6 +8,8 @@ variables:
   tag: '$(Build.BuildId)'
 
 resources:
+  repositories:
+    - repository: self
   containers:
   - container: neuvector
     container_name: neuvector
