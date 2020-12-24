@@ -36,8 +36,8 @@ stages:
         neuvectorController: 'nv-gke'
         containerRegistry: 'dockerhub'
         repository: 'achdevops/holapy-azure'
-        tag: '$(Build.BuildId)'
-        failOnHighSeverityThreshold: true
-        highSeverityThreshold: '1'
-        failOnMediumSeverityThreshold: true
-        mediumSeverityThreshold: '3'
+        tag: '22'
+        #failOnHighSeverityThreshold: true
+        #highSeverityThreshold: '1'
+        #failOnMediumSeverityThreshold: true
+        #mediumSeverityThreshold: '3'
