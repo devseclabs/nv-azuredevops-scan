@@ -8,8 +8,6 @@ variables:
   tag: '$(Build.BuildId)'
 
 resources:
-  repositories:
-    - repository: self
   containers:
   - container: neuvector
     image: neuvector/controller:latest
@@ -62,7 +60,6 @@ stages:
     - task: NeuVectorScan@1
       inputs:
         controllerType: 'local'
-        controllerPort: 10443
         controllerLicense: '$(neuvectorLicense.secureFilePath)'
         containerRegistry: 'dockerhub'
         repository: 'achdevops/holapy-azure'
