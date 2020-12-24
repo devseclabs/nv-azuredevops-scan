@@ -12,12 +12,9 @@ resources:
     - repository: self
   containers:
   - container: neuvector
-    container_name: neuvector
     image: neuvector/controller:latest
-    endpoint: 'dockerhub'
-    environment:
-      - CLUSTER_JOIN_ADDR=neuvector
-      - NV_PLATFORM_INFO=platform=Docker
+    endpoint: 'dockerhub' 
+    options: --env CLUSTER_JOIN_ADDR=neuvector --env NV_PLATFORM_INFO=platform=Docker
     ports:
       - 18300:18300
       - 18301:18301
@@ -32,10 +29,8 @@ resources:
       - /proc:/host/proc
   - container: scanner
     image: neuvector/scanner
-    container_name: scanner
     endpoint: 'dockerhub'
-    environment:
-      - CLUSTER_JOIN_ADDR=neuvector
+    options: --env CLUSTER_JOIN_ADDR=neuvector
     ports:
       - 18402:18402
     volumes:
