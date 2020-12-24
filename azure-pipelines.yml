@@ -37,14 +37,12 @@ stages:
         containerRegistry: 'dockerhub'
         repository: 'achdevops/holapy-azure'
         tag: '$(Build.BuildId)'
-        reportJsonOutputPath: 'report.json'
+        reportJsonOutputPath: '$(Pipeline.Workspace)/report.json'
         #failOnHighSeverityThreshold: true
         #highSeverityThreshold: '1'
         #failOnMediumSeverityThreshold: true
         #mediumSeverityThreshold: '3'
-    - task: DownloadBuildArtifacts@0
+    - task: DownloadPipelineArtifact@2
       inputs:
         buildType: 'current'
-        downloadType: 'specific'
-        itemPattern: 'report.json'
-        downloadPath: '$(System.ArtifactsDirectory)'
+        targetPath: '$(Pipeline.Workspace)'
