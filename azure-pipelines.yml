@@ -42,7 +42,5 @@ stages:
         #highSeverityThreshold: '1'
         #failOnMediumSeverityThreshold: true
         #mediumSeverityThreshold: '3'
-    - task: DownloadPipelineArtifact@2
-      inputs:
-        buildType: 'current'
-        targetPath: '$(Pipeline.Workspace)'
+    - download: current
+      patterns: '**/*.json'
