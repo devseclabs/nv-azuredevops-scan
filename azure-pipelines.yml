@@ -28,10 +28,15 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
+    - task: DownloadSecureFile@1
+      name: neuvectorLicense
+      displayName: Get NeuVector license
+      inputs:
+        secureFile: 'neuvector-license.txt'
     - task: NeuVectorScan@1
       inputs:
         controllerType: 'local'
-        controllerLicense: 'neuvector-license.txt'
+        controllerLicense: '$(neuvectorLicense.secureFilePath)'
         containerRegistry: 'dockerhub'
         repository: 'achdevops/holapy-azure'
         tag: '$(tag)'
